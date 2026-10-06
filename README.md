@@ -693,3 +693,6 @@ That's the skill this repository is built to practice.
 ## Built for learning. Built for experimenting. Built for understanding AI-generated code.
 
 **React Mastery Tutorial** 🚀
+
+
+**Inspired from  https://github.com/ShenSeanChen**
