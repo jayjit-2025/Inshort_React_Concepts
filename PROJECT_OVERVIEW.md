@@ -1108,3 +1108,35 @@ The project should follow one simple rule:
 > it, observe the result, and explain why it happened.**
 
 That is the central idea behind React Mastery Tutorial.
+
+---
+
+# Appendix — Implementation Notes (Final)
+
+The specification above is the original project plan. The final implementation matches it, with these documented differences:
+
+## Stack
+
+- React 19 + TypeScript + Vite with **plain CSS** (the spec allowed "CSS or Tailwind CSS"; plain CSS was chosen to keep dependencies minimal — the only runtime dependency is React itself).
+- `StrictMode` is intentionally disabled so the render-count and effect-count indicators shown to learners are truthful in development.
+
+## Application structure
+
+- Single-page scrolling application (no router): dashboard → 8 concept sections → connected mental-model summary.
+- Progress/completion is tracked per concept and persisted to `localStorage` using the project's own `useLocalStorage` custom Hook.
+- A concept completes automatically when its verification quiz is answered correctly, or manually via the "Mark as complete" chip in the section footer.
+
+## Repository structure (section 20 in practice)
+
+```text
+src/
+├── components/     # ConceptSection, PlaygroundCard, VerificationCard, Dashboard, MentalModel, ...
+├── concepts/       # one folder per module + registry.ts (ordered metadata)
+├── context/        # ProgressContext
+├── hooks/          # useLocalStorage
+└── utils/          # expensiveStats (useMemo demos)
+```
+
+- The suggested `pages/` and `data/` folders were not needed for a single-page app.
+- Documentation: `README.md`, `PROJECT_OVERVIEW.md` (this document), `resources.md`.
+- `smoke.mjs` (`npm run test:smoke`) mounts the app in jsdom and clicks through every module — interactions, quizzes, navigation, and progress persistence.
